@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+*.local
+.astro
 
 # debug
 npm-debug.log*
@@ -30,8 +32,30 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (Bloqueia todas as chaves reais, mas permite o .env.example)
+.env
+.env*.local
+.env.development
+.env.production
+.env.test
+!.env.example
+
+# Supabase (Configurações locais e chaves da CLI)
+.supabase/
+supabase/.temp/
+
+# IDEs e Editores de código
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # vercel
 .vercel
