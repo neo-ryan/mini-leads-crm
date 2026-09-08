@@ -38,7 +38,5 @@ supabase/.temp/
 *.sln
 *.sw?
 .vercel
-
-# typescript
 *.tsbuildinfo
 next-env.d.ts
