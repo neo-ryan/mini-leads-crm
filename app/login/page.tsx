@@ -43,6 +43,19 @@ export default function Login() {
                         </div>
                         <Button className="w-full">Entrar</Button>
                     </TabsContent>
+
+                    <TabsContent value="register" className="space-y-4 m-0 flex flex-col">
+                        <div>
+                            <Input type="email" placeholder="seu@email.com"></Input>
+                        </div>
+                        <div>
+                            <Input type="password" placeholder="Sua senha"></Input>
+                        </div>
+                        <div>
+                            <Input type="senha" placeholder="Confirme sua senha"></Input>
+                        </div>
+                        <Button className="w-full">Cadastrar-se</Button>
+                    </TabsContent>
                     </CardContent>
                 </Tabs>
             </Card>
