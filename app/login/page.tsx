@@ -36,10 +36,10 @@ export default function Login() {
                     <CardContent className="pb-6">
                         <TabsContent value="login" className="space-y-4 m-0 flex flex-col">
                         <div>
-                            <Input type="email" placeholder="seu@email.com"></Input>
+                            <Input type="email" placeholder="seu@email.com" name="email"></Input>
                         </div>
                         <div>
-                            <Input type="password" placeholder="Sua senha"></Input>
+                            <Input type="password" placeholder="Sua senha" name="password"></Input>
                         </div>
                         <Button className="w-full">Entrar</Button>
                     </TabsContent>
