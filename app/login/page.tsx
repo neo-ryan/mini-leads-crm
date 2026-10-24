@@ -40,7 +40,7 @@ export default function Login() {
                 <div>
                   <Input type="password" placeholder="Sua senha" name="password" required />
                 </div>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white" disabled={isLoginPending}>
+                <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white" disabled={isLoginPending}>
                   {isLoginPending ? 'Entrando...' : 'Entrar'}
                 </Button>
               </form>
@@ -62,7 +62,7 @@ export default function Login() {
                 <div>
                   <Input type="password" placeholder="Confirme sua senha" name="confirmPassword" required />
                 </div>
-                <Button className="w-full bg-emerald-600 hover:bg-emerald-500 text-white" disabled={isRegisterPending}>
+                <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-500 text-white" disabled={isRegisterPending}>
                   {isRegisterPending ? 'Criando conta...' : 'Cadastrar-se'}
                 </Button>
               </form>
