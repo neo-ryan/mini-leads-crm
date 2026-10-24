@@ -8,7 +8,7 @@ const globalForDb = globalThis as unknown as {
 const connectionString = process.env.DATABASE_URL
 
 if (!connectionString) {
-  throw new Error('DATABASE_URL ausente nas variaveis de ambiente.')
+  throw new Error('DATABASE_URL ausente nas variáveis de ambiente.')
 }
 
 export const sql = globalForDb.sql ?? postgres(connectionString, {
