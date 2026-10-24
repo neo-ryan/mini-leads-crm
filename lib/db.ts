@@ -5,17 +5,25 @@ const globalForDb = globalThis as unknown as {
   sql: ReturnType<typeof postgres> | undefined
 }
 
-const connectionString = process.env.DATABASE_URL
+function createClient() {
+  const connectionString = process.env.DATABASE_URL
+  if (!connectionString) return null as unknown as ReturnType<typeof postgres>
 
-if (!connectionString) {
-  throw new Error('DATABASE_URL ausente nas variáveis de ambiente.')
+  try {
+    return postgres(connectionString, {
+      ssl: 'require',
+      max: 10,
+      idle_timeout: 20,
+      connect_timeout: 10,
+    })
+  } catch (err) {
+    console.error('DATABASE_URL inválida:', err)
+    return null as unknown as ReturnType<typeof postgres>
+  }
 }
 
-export const sql = globalForDb.sql ?? postgres(connectionString, {
-  ssl: 'require',
-  max: 10,
-  idle_timeout: 20,
-  connect_timeout: 10,
-})
+export const sql = globalForDb.sql ?? createClient()
 
-if (process.env.NODE_ENV !== 'production') globalForDb.sql = sql
+if (process.env.NODE_ENV !== 'production' && sql) {
+  globalForDb.sql = sql
+}
