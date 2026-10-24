@@ -12,7 +12,7 @@ export default function Home() {
         Mini Leads CRM
       </h1>
       <p className="text-slate-400 text-sm sm:text-base md:text-xl max-w-2xl leading-relaxed">
-        Organize seus potenciais clientes, envie propostas e feche negócios mais rápido em uma única plataforma.
+        Organize os seus potenciais clientes, envie propostas e feche negócios mais rápido numa única plataforma.
       </p>
       <div className="w-full sm:w-auto pt-2">
         <Link href="/login" className="w-full sm:w-auto inline-block">
