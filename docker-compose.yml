@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: mini_leads_db
+    restart: always
+    environment:
+      POSTGRES_USER: ryan
+      POSTGRES_PASSWORD: "Kuningham1304#$"
+      POSTGRES_DB: mini_leads_crm
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

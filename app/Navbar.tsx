@@ -1,23 +1,48 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Users, Zap, Target } from "lucide-react";
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Target, LogOut, LayoutDashboard, Users } from 'lucide-react'
+import { getSessionUser } from '@/lib/auth'
+import { logoutAction } from '@/app/actions/auth'
 
-export default function Navbar() {
-    return (
-        <header className="w-full border-b border-white/30 bg-transparent backdrop-blur-md">
-            <nav className="font-jet flex flex-row p-8 justify-between items-center max-w-7xl mx-auto p-4">
-            <div className="flex gap-6">
-                    <Link href={"/"} className="flex gap-2 tracking-tight font-bold whitespace-nowrap"><Target /><span>Mini-CRM</span></Link>
-                <div className="hidden sm:flex flex-row gap-6">
-                    <Link href={"/dashboard"}>Dashboard</Link>
-                    <Link href={"/leads"}>Leads</Link>
-                </div>
+export default async function Navbar() {
+  const session = await getSessionUser()
+
+  return (
+    <header className="w-full border-b border-zinc-800/80 bg-zinc-950/60 backdrop-blur-md">
+      <nav className="font-jet flex flex-row justify-between items-center max-w-7xl mx-auto px-4 py-3 sm:p-4 gap-2">
+        <div className="flex gap-4 sm:gap-8 items-center">
+          <Link href="/" className="flex gap-2 tracking-tight font-bold text-white items-center text-sm sm:text-base">
+            <Target className="text-emerald-500 w-5 h-5 shrink-0" />
+            <span>Mini-CRM</span>
+          </Link>
+          {session && (
+            <div className="hidden sm:flex flex-row gap-6 text-xs text-zinc-400">
+              <Link href="/dashboard" className="flex items-center gap-1 hover:text-white transition-colors">
+                <LayoutDashboard className="w-3.5 h-3.5" /> Dashboard
+              </Link>
+              <Link href="/leads" className="flex items-center gap-1 hover:text-white transition-colors">
+                <Users className="w-3.5 h-3.5" /> Leads
+              </Link>
             </div>
-            <Button variant="outline" size="lg">
-                <Zap />
-                <Link href={"/login"}>Login/Cadastro</Link>
-            </Button>
-        </nav>
-        </header>
-    );
+          )}
+        </div>
+
+        <div>
+          {session ? (
+            <form action={logoutAction}>
+              <Button variant="outline" size="sm" className="gap-2 border-zinc-800 hover:bg-zinc-800 text-zinc-300 text-xs px-2.5">
+                <LogOut className="w-3.5 h-3.5" /> Sair
+              </Button>
+            </form>
+          ) : (
+            <Link href="/login">
+              <Button variant="outline" size="sm" className="border-zinc-800 hover:bg-zinc-800 text-zinc-300 text-xs px-3">
+                Entrar
+              </Button>
+            </Link>
+          )}
+        </div>
+      </nav>
+    </header>
+  )
 }
